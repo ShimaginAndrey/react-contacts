@@ -6,11 +6,12 @@ import {useDataViewMode} from '../../custom-hook/useDataViewMode';
 
 import {ContactsTable} from './ContactsTable/ContactsTable';
 import {LoaderContactsTable} from './LoaderContactsTable/LoaderContactsTable';
+import {ErrorLoadContacts} from './ErrorLoadContacts/ErrorLoadContacts';
 import {ToggleDataViewMode} from './ToggleDataViewModel/ToggleDataViewMode';
 import {ContactsFilters} from './ContactsFilter/ContactsFilter';
 import {filterByFullName, filterByGender, filterByNationality} from './ContactsFilter/func-filter/funcFilter';
 
-import {DATA_VIEW_MODES} from './constants'
+import {DATA_VIEW_MODES} from './constants';
 
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
@@ -60,9 +61,9 @@ export const Contacts = () => {
                 clearFilters={clearFilters}/>
               </Grid>
               <Grid item xs={12}>
-                { contacts.isLoading || contacts.isError ? <LoaderContactsTable contacts={contacts}/> 
-                  : 
-                  stateDataViewMode === DATA_VIEW_MODES.TABLE ? <ContactsTable data={filteredContacts}/> : 'Grid'
+                { (contacts.isLoading && <LoaderContactsTable contacts={contacts}/>) 
+                  || (contacts.isError && <ErrorLoadContacts contacts={contacts}/>)
+                  || (stateDataViewMode === DATA_VIEW_MODES.TABLE ? <ContactsTable data={filteredContacts}/> : 'Grid')
                 }              
               </Grid>
           </Grid>
