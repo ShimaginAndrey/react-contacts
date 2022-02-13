@@ -1,0 +1,28 @@
+// Main Container
+
+.main-container {
+    margin-top: 24px;
+
+    .header-grid {
+        margin-bottom: 15px;
+    }
+
+    .filters-container {
+        margin-bottom: 25px;
+
+        .select-filter {
+            min-width: 120px;
+            margin-left: 10px;
+        }
+    }
+
+    .button-number {
+        min-width: 150px;
+    }
+
+    .icon {
+        &.icon-copy {
+            margin-right: 5px;
+        }
+    }
+}
